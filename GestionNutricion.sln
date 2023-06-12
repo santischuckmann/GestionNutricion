@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionNutricion.Api", "GestionNutricion.Api\GestionNutricion.Api.csproj", "{01F08ABD-1DC5-4767-9AEE-CEEA49D3F2A5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionNutricion.Core", "GestionNutricion.Core\GestionNutricion.Core.csproj", "{ACB87C2C-F021-4458-8373-5EEB83B8BBEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionNutricion.Infrastructure", "GestionNutricion.Infrastructure\GestionNutricion.Infrastructure.csproj", "{BE4FB1ED-12AD-4DCF-A4C1-53DB6942CCF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{633C3C4F-27BD-4158-A833-C5E3CA28B0D0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionNutricion.UnitTests", "GestionNutricion.UnitTests\GestionNutricion.UnitTests.csproj", "{2BC1A32F-A11D-4475-958C-251A1CCBC8AE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionNutricion.IntegrationTests", "GestionNutricion.IntegrationTests\GestionNutricion.IntegrationTests.csproj", "{9F10C136-64AF-4AA4-A835-158B9CE8D72A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E901F2C2-E35A-47EC-A13A-DA2F019BADEA}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01F08ABD-1DC5-4767-9AEE-CEEA49D3F2A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01F08ABD-1DC5-4767-9AEE-CEEA49D3F2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01F08ABD-1DC5-4767-9AEE-CEEA49D3F2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01F08ABD-1DC5-4767-9AEE-CEEA49D3F2A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACB87C2C-F021-4458-8373-5EEB83B8BBEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACB87C2C-F021-4458-8373-5EEB83B8BBEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACB87C2C-F021-4458-8373-5EEB83B8BBEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACB87C2C-F021-4458-8373-5EEB83B8BBEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE4FB1ED-12AD-4DCF-A4C1-53DB6942CCF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE4FB1ED-12AD-4DCF-A4C1-53DB6942CCF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE4FB1ED-12AD-4DCF-A4C1-53DB6942CCF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE4FB1ED-12AD-4DCF-A4C1-53DB6942CCF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BC1A32F-A11D-4475-958C-251A1CCBC8AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BC1A32F-A11D-4475-958C-251A1CCBC8AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BC1A32F-A11D-4475-958C-251A1CCBC8AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BC1A32F-A11D-4475-958C-251A1CCBC8AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F10C136-64AF-4AA4-A835-158B9CE8D72A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F10C136-64AF-4AA4-A835-158B9CE8D72A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F10C136-64AF-4AA4-A835-158B9CE8D72A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F10C136-64AF-4AA4-A835-158B9CE8D72A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2BC1A32F-A11D-4475-958C-251A1CCBC8AE} = {633C3C4F-27BD-4158-A833-C5E3CA28B0D0}
+		{9F10C136-64AF-4AA4-A835-158B9CE8D72A} = {633C3C4F-27BD-4158-A833-C5E3CA28B0D0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2809187A-F1AC-488E-9308-3098106601D4}
+	EndGlobalSection
+EndGlobal
