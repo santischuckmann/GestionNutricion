@@ -1,12 +1,10 @@
-﻿using GestionNutricion.Core.Entitys;
-
-namespace GestionNutricion.Infrastructure.DTOs
+﻿namespace GestionNutricion.Core.Entitys
 {
-    public class DietaryPlan
+    public class DietaryPlan: CommonEntity
     {
         public DietaryPlan()
         {
-            Snacks = new HashSet<Snack>();
+            PlanSnacks = new HashSet<PlanSnack>();
         }
 
         public string Name { get; set; }
@@ -15,6 +13,6 @@ namespace GestionNutricion.Infrastructure.DTOs
         public string Breakfast { get; set; }
         public string Lunch { get; set; }
         public string Dinner { get; set; }
-        public virtual ICollection<Snack> Snacks { get; set; }
+        public virtual ICollection<PlanSnack> PlanSnacks { get; set; }
     }
 }

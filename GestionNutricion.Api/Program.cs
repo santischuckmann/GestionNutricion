@@ -1,7 +1,16 @@
+using CedServicios.Infraestructura.Extensiones;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+ConfigurationManager Configuration = builder.Configuration;
+
+Configuration.AddJsonFile("appsettings.json", optional:  false, reloadOnChange: true);
+
+builder.Services.AddDbContexts(Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

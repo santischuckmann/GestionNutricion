@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace GestionNutricion.Core.Entitys
 {
-    public class Snack
+    public class Snack: CommonEntity
     {
         public string Food { get; set; }
         public DateTime IntakeHour { get; set; }
