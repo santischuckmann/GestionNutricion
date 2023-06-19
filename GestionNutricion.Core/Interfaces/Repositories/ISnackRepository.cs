@@ -1,4 +1,5 @@
 ﻿using GestionNutricion.Core.Entitys;
+using GestionNutricion.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GestionNutricion.Core.Interfaces.Repositories
 {
-    public interface ISnackRepository
+    public interface ISnackRepository: IRepository<Snack>
     {
     }
 }

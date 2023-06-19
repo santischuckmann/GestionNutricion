@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GestionNutricion.Infrastructure.Repositories
 {
-    public class BaseRepository<T> : IRepositorio<T> where T : CommonEntity
+    public class BaseRepository<T> : IRepository<T> where T : CommonEntity
     {
         #region Variables
         protected readonly GestionNutricionContext _context;

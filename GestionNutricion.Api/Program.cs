@@ -12,6 +12,7 @@ Configuration.AddJsonFile("appsettings.json", optional:  false, reloadOnChange: 
 
 builder.Services.AddDbContexts(Configuration);
 builder.Services.AddControllers();
+builder.Services.AddServices();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

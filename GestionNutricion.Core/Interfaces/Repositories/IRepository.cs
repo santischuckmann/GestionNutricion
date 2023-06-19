@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace GestionNutricion.Infrastructure.Repositories
 {
-    public interface IRepositorio<T> where T : CommonEntity
+    public interface IRepository<T> where T : CommonEntity
     {
         Task<IEnumerable<T>> GetAll();
 

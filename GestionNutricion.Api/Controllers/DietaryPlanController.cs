@@ -17,7 +17,7 @@ namespace GestionNutricion.Api.Controllers
         //[ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(DietaryPlanDTO))]
         //[ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public IActionResult CreateDietaryPlan()
-        {
+        { 
             return Ok(null);
         }
     }

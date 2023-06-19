@@ -1,6 +1,8 @@
 ﻿using GestionNutricion.Core.Interfaces.Repositories;
 using GestionNutricion.Infrastructure.Data;
+using GestionNutricion.Infrastructure.Interfaces;
 using GestionNutricion.Infrastructure.Repositories;
+using GestionNutricion.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +23,7 @@ namespace CedServicios.Infraestructura.Extensiones
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<ISnackRepository, SnackRepository>();
+            services.AddScoped<ISnackService, SnackService>();
 
             return services;
         }
