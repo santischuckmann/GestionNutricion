@@ -19,6 +19,7 @@ namespace GestionNutricion.Infraestructure.Data.Configurations
                 .IsUnicode(false);
 
             builder.Property(s => s.IntakeHour)
+                .HasColumnType("time")
                 .IsRequired();
 
         }

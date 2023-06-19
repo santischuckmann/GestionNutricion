@@ -18,6 +18,7 @@ namespace GestionNutricion.Infrastructure.Data.Configurations
                 .IsUnicode(false);
 
             builder.Property(p => p.IntakeHour)
+                .HasColumnType("time")
                 .IsRequired();
 
             builder.HasOne(p => p.DietaryPlan)
