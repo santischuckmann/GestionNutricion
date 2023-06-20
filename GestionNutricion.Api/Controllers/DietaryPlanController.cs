@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using GestionNutricion.Infrastructure.DTOs;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -16,7 +17,7 @@ namespace GestionNutricion.Api.Controllers
         [HttpPost]
         //[ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(DietaryPlanDTO))]
         //[ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public IActionResult CreateDietaryPlan()
+        public IActionResult CreateDietaryPlan(DietaryPlanDto dietaryPlanDto)
         { 
             return Ok(null);
         }
