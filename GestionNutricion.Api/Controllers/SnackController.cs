@@ -18,6 +18,20 @@ namespace GestionNutricion.Api.Controllers
         }
 
         /// <summary>
+        /// Add new Snack.
+        /// </summary>
+        /// <param name="snackDto">New Snack to Add</param>
+        /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> AddSnack(SnackDto snackDto)
+        {
+            var snack = await _snackService.AddSnack(snackDto);
+            return Ok(snack);
+        }
+
+
+        /// <summary>
         /// Get all Snacks.
         /// </summary>
         /// <returns></returns>
