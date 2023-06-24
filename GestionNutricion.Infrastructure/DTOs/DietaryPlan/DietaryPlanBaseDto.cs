@@ -1,6 +1,6 @@
-﻿namespace GestionNutricion.Infrastructure.DTOs
+﻿namespace GestionNutricion.Infrastructure.DTOs.DietaryPlan
 {
-    public class DietaryPlanDto
+    public class DietaryPlanBaseDto
     {
         public string Name { get; set; }
         public string Surname { get; set; }

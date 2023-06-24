@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using GestionNutricion.Infrastructure.DTOs;
+using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
 
 namespace GestionNutricion.Infrastructure.Validators
 {

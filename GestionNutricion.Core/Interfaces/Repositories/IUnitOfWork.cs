@@ -9,6 +9,7 @@ namespace GestionNutricion.Core.Interfaces.Repositories
     public interface IUnitOfWork: IDisposable
     {
         ISnackRepository SnackRepository { get; }
+        IDietaryPlanRepository DietaryPlanRepository { get; }
         void Save();
         Task SaveAsync();
     }

@@ -1,4 +1,4 @@
-﻿using GestionNutricion.Infrastructure.DTOs;
+﻿using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace GestionNutricion.Infrastructure.Interfaces
 {
     public interface IDietaryPlanService
     {
-        Task CreateDietaryPlan(DietaryPlanDto newDietaryPlan);
+        Task<DietaryPlanDto> CreateDietaryPlan(DietaryPlanInsertionDto newDietaryPlan);
         Task<DietaryPlanDto> GetDietaryPlanById(int id);
     }
 }

@@ -7,12 +7,14 @@ namespace GestionNutricion.Infrastructure.Repositories
     {
         private readonly GestionNutricionContext _context;
         private readonly ISnackRepository _snackRepository;
+        private readonly IDietaryPlanRepository _dietaryPlanRepository;
         public UnitOfWork(GestionNutricionContext context)
         {
             _context = context;
         }
 
         public ISnackRepository SnackRepository => _snackRepository ?? new SnackRepository(_context);
+        public IDietaryPlanRepository DietaryPlanRepository => _dietaryPlanRepository ?? new DietaryPlanRepository(_context);
 
         public void Dispose()
         {

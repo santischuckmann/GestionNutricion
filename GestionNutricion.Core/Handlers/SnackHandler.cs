@@ -2,6 +2,7 @@
 using GestionNutricion.Core.Interfaces.Handlers;
 using GestionNutricion.Core.Interfaces.Repositories;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,5 +22,7 @@ namespace GestionNutricion.Core.Handlers
             await _unitOfWork.SnackRepository.Add(snack);
             await _unitOfWork.SaveAsync();
         }
+
+        public async Task<IEnumerable<Snack>> GetAllSnacks() => await _unitOfWork.SnackRepository.GetAll();
     }
 }

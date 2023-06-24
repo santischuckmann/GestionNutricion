@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GestionNutricion.Infrastructure.DTOs
+namespace GestionNutricion.Infrastructure.DTOs.Snack
 {
-    public class SnackDto
+    public class SnackDto: SnackBaseDto
     {
         public int Id { get; set; }
-        public string Food { get; set; }
-        public TimeSpan IntakeHour { get; set; }
     }
 }

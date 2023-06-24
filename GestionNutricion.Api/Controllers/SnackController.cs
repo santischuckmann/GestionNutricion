@@ -1,4 +1,4 @@
-﻿using GestionNutricion.Infrastructure.DTOs;
+﻿using GestionNutricion.Infrastructure.DTOs.Snack;
 using GestionNutricion.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +24,7 @@ namespace GestionNutricion.Api.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> AddSnack(SnackDto snackDto)
+        public async Task<IActionResult> AddSnack(SnackInsertionDto snackDto)
         {
             var snack = await _snackService.AddSnack(snackDto);
             return Ok(snack);

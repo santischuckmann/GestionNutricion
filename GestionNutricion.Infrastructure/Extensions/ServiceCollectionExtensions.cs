@@ -28,12 +28,15 @@ namespace CedServicios.Infraestructura.Extensiones
 
             // repositories
             services.AddScoped<ISnackRepository, SnackRepository>();
+            services.AddScoped<IDietaryPlanRepository,  DietaryPlanRepository>();
 
             // services
             services.AddScoped<ISnackService, SnackService>();
+            services.AddScoped<IDietaryPlanService, DietaryPlanService>();
 
             // handlers
             services.AddScoped<ISnackHandler, SnackHandler>();
+            services.AddScoped<IDietaryPlanHandler, DietaryPlanHandler>();
 
             return services;
         }
