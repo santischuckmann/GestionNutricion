@@ -21,11 +21,11 @@ namespace GestionNutricion.Api.Controllers
         /// <param name="dietaryPlanDto"></param>
         /// <returns></returns>
         [HttpPost]
-        //[ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(DietaryPlanDTO))]
-        //[ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(DietaryPlanDto))]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CreateDietaryPlan(DietaryPlanInsertionDto dietaryPlanDto)
         { 
-            var result = await _dietaryPlanService.CreateDietaryPlan(dietaryPlanDto);
+            DietaryPlanDto result = await _dietaryPlanService.CreateDietaryPlan(dietaryPlanDto);
 
             return Ok(result);
         }

@@ -1,7 +1,6 @@
 ﻿using GestionNutricion.Core.Entitys;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 
 namespace GestionNutricion.Infraestructure.Data.Configurations
 {
@@ -15,21 +14,12 @@ namespace GestionNutricion.Infraestructure.Data.Configurations
 
             builder.Property(d => d.Breakfast)
                 .IsRequired()
-                .HasMaxLength(50)
-                .IsUnicode(false);
-
-            builder.Property(d => d.Lunch)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsUnicode(false);
-
-            builder.Property(d => d.Dinner)
-                .IsRequired()
-                .HasMaxLength(50)
-                .IsUnicode(false);
+                .HasMaxLength(50);
 
             builder.Property(d => d.Observations)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(256)
+                .IsUnicode(false);
 
         }
     }

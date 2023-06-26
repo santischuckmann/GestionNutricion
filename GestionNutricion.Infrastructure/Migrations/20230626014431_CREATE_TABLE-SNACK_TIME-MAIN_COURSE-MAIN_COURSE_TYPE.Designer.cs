@@ -4,6 +4,7 @@ using GestionNutricion.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestionNutricion.Infrastructure.Migrations
 {
     [DbContext(typeof(GestionNutricionContext))]
-    partial class GestionNutricionContextModelSnapshot : ModelSnapshot
+    [Migration("20230626014431_CREATE_TABLE-SNACK_TIME-MAIN_COURSE-MAIN_COURSE_TYPE")]
+    partial class CREATE_TABLESNACK_TIMEMAIN_COURSEMAIN_COURSE_TYPE
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,6 +37,12 @@ namespace GestionNutricion.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("IdDinner")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdLunch")
+                        .HasColumnType("int");
 
                     b.Property<int?>("MainCourseTypeId")
                         .HasColumnType("int");

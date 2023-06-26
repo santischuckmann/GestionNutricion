@@ -1,4 +1,5 @@
-﻿using GestionNutricion.Infrastructure.DTOs.Snack;
+﻿using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
+using GestionNutricion.Infrastructure.DTOs.Snack;
 using GestionNutricion.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,10 +24,12 @@ namespace GestionNutricion.Api.Controllers
         /// <param name="snackDto">New Snack to Add</param>
         /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(SnackDto))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> AddSnack(SnackInsertionDto snackDto)
         {
-            var snack = await _snackService.AddSnack(snackDto);
+            SnackDto snack = await _snackService.AddSnack(snackDto);
+
             return Ok(snack);
         }
 
@@ -36,10 +39,11 @@ namespace GestionNutricion.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("Snacks", Name = nameof(GetAllSnacks))]
+        [ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(IEnumerable<SnackDto>))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetAllSnacks()
         {
-            var snacks = await _snackService.GetAllSnacks();
+            IEnumerable<SnackDto> snacks = await _snackService.GetAllSnacks();
 
             return Ok(snacks);
         }

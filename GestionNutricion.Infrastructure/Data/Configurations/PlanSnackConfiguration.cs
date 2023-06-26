@@ -17,14 +17,16 @@ namespace GestionNutricion.Infrastructure.Data.Configurations
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            builder.Property(p => p.IntakeHour)
-                .HasColumnType("time")
-                .IsRequired();
-
             builder.HasOne(p => p.DietaryPlan)
                 .WithMany(d => d.PlanSnacks)
                 .HasForeignKey(s => s.IdDietaryPlan)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+            builder.HasOne(s => s.SnackTime)
+                .WithMany(s => s.PlanSnacks)
+                .HasForeignKey(s => s.IdSnackTime)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .IsRequired(false);
         }
     }
 }

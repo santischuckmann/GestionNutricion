@@ -19,6 +19,9 @@ namespace GestionNutricion.Infrastructure.Data
         public virtual DbSet<DietaryPlan> DietaryPlans { get; set; }
         public virtual DbSet<Snack> Snacks { get; set; }
         public virtual DbSet<PlanSnack> PlanSnacks { get; set; }
+        public virtual DbSet<SnackTime> SnackTimes { get; set; }
+        public virtual DbSet<MainCourse> MainCourses { get; set; }
+        public virtual DbSet<MainCourseType> MainCourseType { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,7 +29,7 @@ namespace GestionNutricion.Infrastructure.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Server=localhost;Database=CedServicios;Integrated Security=true;Trust Server Certificate=true;");
+            optionsBuilder.UseSqlServer("Server=localhost;Database=GestionNutricion;Integrated Security=true;Trust Server Certificate=true;");
         }
     }
 }
