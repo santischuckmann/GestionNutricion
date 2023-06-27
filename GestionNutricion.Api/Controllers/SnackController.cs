@@ -24,11 +24,11 @@ namespace GestionNutricion.Api.Controllers
         /// <param name="snackDto">New Snack to Add</param>
         /// <returns></returns>
         [HttpPost]
-        [ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(SnackDto))]
+        [ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(PlanSnackDto))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> AddSnack(SnackInsertionDto snackDto)
+        public async Task<IActionResult> AddSnack(PlanSnackInsertionDto snackDto)
         {
-            SnackDto snack = await _snackService.AddSnack(snackDto);
+            PlanSnackDto snack = await _snackService.AddSnack(snackDto);
 
             return Ok(snack);
         }
@@ -39,11 +39,11 @@ namespace GestionNutricion.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("Snacks", Name = nameof(GetAllSnacks))]
-        [ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(IEnumerable<SnackDto>))]
+        [ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(IEnumerable<PlanSnackDto>))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> GetAllSnacks()
         {
-            IEnumerable<SnackDto> snacks = await _snackService.GetAllSnacks();
+            IEnumerable<PlanSnackDto> snacks = await _snackService.GetAllSnacks();
 
             return Ok(snacks);
         }

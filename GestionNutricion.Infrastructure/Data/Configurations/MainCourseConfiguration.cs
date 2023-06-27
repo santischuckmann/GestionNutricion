@@ -26,6 +26,11 @@ namespace GestionNutricion.Infrastructure.Data.Configurations
                 .WithMany(d => d.MainCourses)
                 .HasForeignKey(s => s.IdDietaryPlan)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+            builder.HasOne(m => m.MainCourseType)
+                .WithMany(d => d.MainCourses)
+                .HasForeignKey(s => s.IdMainCourseType)
+                .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

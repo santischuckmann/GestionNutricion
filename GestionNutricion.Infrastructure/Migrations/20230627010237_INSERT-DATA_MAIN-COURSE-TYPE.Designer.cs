@@ -4,6 +4,7 @@ using GestionNutricion.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestionNutricion.Infrastructure.Migrations
 {
     [DbContext(typeof(GestionNutricionContext))]
-    partial class GestionNutricionContextModelSnapshot : ModelSnapshot
+    [Migration("20230627010237_INSERT-DATA_MAIN-COURSE-TYPE")]
+    partial class INSERTDATA_MAINCOURSETYPE
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,6 +38,9 @@ namespace GestionNutricion.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("MainCourseTypeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -50,6 +56,8 @@ namespace GestionNutricion.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MainCourseTypeId");
 
                     b.ToTable("DietaryPlan", (string)null);
                 });
@@ -80,11 +88,14 @@ namespace GestionNutricion.Infrastructure.Migrations
                     b.Property<int>("IdMainCourseType")
                         .HasColumnType("int");
 
+                    b.Property<int>("MainCourseTypeId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IdDietaryPlan");
 
-                    b.HasIndex("IdMainCourseType");
+                    b.HasIndex("MainCourseTypeId");
 
                     b.ToTable("MainCourse", (string)null);
                 });
@@ -180,6 +191,13 @@ namespace GestionNutricion.Infrastructure.Migrations
                     b.ToTable("SnackTime", (string)null);
                 });
 
+            modelBuilder.Entity("GestionNutricion.Core.Entitys.DietaryPlan", b =>
+                {
+                    b.HasOne("GestionNutricion.Core.Entitys.MainCourseType", null)
+                        .WithMany("DietaryPlans")
+                        .HasForeignKey("MainCourseTypeId");
+                });
+
             modelBuilder.Entity("GestionNutricion.Core.Entitys.MainCourse", b =>
                 {
                     b.HasOne("GestionNutricion.Core.Entitys.DietaryPlan", "DietaryPlan")
@@ -188,8 +206,9 @@ namespace GestionNutricion.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("GestionNutricion.Core.Entitys.MainCourseType", "MainCourseType")
-                        .WithMany("MainCourses")
-                        .HasForeignKey("IdMainCourseType")
+                        .WithMany()
+                        .HasForeignKey("MainCourseTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("DietaryPlan");
@@ -231,7 +250,7 @@ namespace GestionNutricion.Infrastructure.Migrations
 
             modelBuilder.Entity("GestionNutricion.Core.Entitys.MainCourseType", b =>
                 {
-                    b.Navigation("MainCourses");
+                    b.Navigation("DietaryPlans");
                 });
 
             modelBuilder.Entity("GestionNutricion.Core.Entitys.SnackTime", b =>

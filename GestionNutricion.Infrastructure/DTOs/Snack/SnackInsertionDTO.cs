@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestionNutricion.Infrastructure.DTOs.Snack
 {
-    public class SnackInsertionDto: SnackBaseDto
+    public class SnackInsertionDtO : SnackBaseDto
     {
     }
 }

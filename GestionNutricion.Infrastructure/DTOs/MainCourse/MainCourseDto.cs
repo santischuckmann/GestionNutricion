@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GestionNutricion.Infrastructure.DTOs.Snack
+namespace GestionNutricion.Infrastructure.DTOs.MainCourse
 {
-    public class SnackDto: SnackBaseDto
+    public class MainCourseDto : MainCourseBaseDto
     {
         public int Id { get; set; }
-        public SnackTimeDto SnackTime { get; set; }
+        public int IdDietaryPlan { get; set; }
     }
 }

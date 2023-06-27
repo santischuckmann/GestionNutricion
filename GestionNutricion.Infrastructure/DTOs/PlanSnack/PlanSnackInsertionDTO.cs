@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestionNutricion.Infrastructure.DTOs.Snack
 {
-    public class SnackDto: SnackBaseDto
+    public class PlanSnackInsertionDto : PlanSnackBaseDto
     {
-        public int Id { get; set; }
-        public SnackTimeDto SnackTime { get; set; }
     }
 }

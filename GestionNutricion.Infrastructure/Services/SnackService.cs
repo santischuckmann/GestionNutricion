@@ -20,22 +20,22 @@ namespace GestionNutricion.Infrastructure.Services
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<SnackDto> AddSnack(SnackInsertionDto newSnackDto)
+        public async Task<PlanSnackDto> AddSnack(PlanSnackInsertionDto newSnackDto)
         {
             var snack = _mapper.Map<Snack>(newSnackDto);
 
             await _snackHandler.AddSnack(snack);
 
-            var snackDto = _mapper.Map<SnackDto>(snack);
+            var snackDto = _mapper.Map<PlanSnackDto>(snack);
 
             return snackDto;
         }
 
-        public async Task<IEnumerable<SnackDto>> GetAllSnacks()
+        public async Task<IEnumerable<PlanSnackDto>> GetAllSnacks()
         {
             var rawSnacks = await _snackHandler.GetAllSnacks();
 
-            var snacks = _mapper.Map<IEnumerable<SnackDto>>(rawSnacks);
+            var snacks = _mapper.Map<IEnumerable<PlanSnackDto>>(rawSnacks);
 
             return snacks;
         }

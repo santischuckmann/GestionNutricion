@@ -9,9 +9,9 @@ namespace GestionNutricion.Core.Entitys
     public class MainCourseType: MasterTableEntity
     {
         public MainCourseType() 
-        { 
-            DietaryPlans = new HashSet<DietaryPlan>();
+        {
+            MainCourses = new HashSet<MainCourse>();
         }
-        public ICollection<DietaryPlan> DietaryPlans { get; set; }
+        public ICollection<MainCourse> MainCourses { get; set; }
     }
 }
