@@ -8,6 +8,9 @@ namespace GestionNutricion.Core.Enums
 {
     public enum SnackTime
     {
+        /// <summary>
+        /// Between breakfast and lunch
+        /// </summary>
         BreakfastAndLunch = 1,
         AfternoonSnack = 2,
         BeforeDinner = 3,

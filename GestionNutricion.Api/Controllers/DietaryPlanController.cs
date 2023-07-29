@@ -1,11 +1,13 @@
 ﻿using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
 using GestionNutricion.Infrastructure.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace GestionNutricion.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DietaryPlanController : ControllerBase
