@@ -22,6 +22,7 @@ namespace GestionNutricion.Infrastructure.Data
         public virtual DbSet<SnackTime> SnackTimes { get; set; }
         public virtual DbSet<MainCourse> MainCourses { get; set; }
         public virtual DbSet<MainCourseType> MainCourseType { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

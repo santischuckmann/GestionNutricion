@@ -31,14 +31,17 @@ namespace CedServicios.Infraestructura.Extensiones
             // repositories
             services.AddScoped<ISnackRepository, SnackRepository>();
             services.AddScoped<IDietaryPlanRepository,  DietaryPlanRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             // services
             services.AddScoped<ISnackService, SnackService>();
             services.AddScoped<IDietaryPlanService, DietaryPlanService>();
+            services.AddScoped<IUserService, UserService>();
 
             // handlers
             services.AddScoped<ISnackHandler, SnackHandler>();
             services.AddScoped<IDietaryPlanHandler, DietaryPlanHandler>();
+            services.AddScoped<IUserHandler, UserHandler>();
 
             // clients
             services.AddHttpClient<IFoodProxy, FoodProxy>();

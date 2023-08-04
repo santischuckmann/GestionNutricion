@@ -8,6 +8,7 @@ namespace GestionNutricion.Infrastructure.Repositories
         private readonly GestionNutricionContext _context;
         private readonly ISnackRepository _snackRepository;
         private readonly IDietaryPlanRepository _dietaryPlanRepository;
+        private readonly IUserRepository _userRepository;
         public UnitOfWork(GestionNutricionContext context)
         {
             _context = context;
@@ -15,6 +16,7 @@ namespace GestionNutricion.Infrastructure.Repositories
 
         public ISnackRepository SnackRepository => _snackRepository ?? new SnackRepository(_context);
         public IDietaryPlanRepository DietaryPlanRepository => _dietaryPlanRepository ?? new DietaryPlanRepository(_context);
+        public IUserRepository UserRepository => _userRepository ?? new UserRepository(_context);
 
         public void Dispose()
         {

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GestionNutricion.Core.Entitys;
+using GestionNutricion.Infrastructure.DTOs;
 using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
 using GestionNutricion.Infrastructure.DTOs.MainCourse;
 using GestionNutricion.Infrastructure.DTOs.Snack;
@@ -20,6 +21,8 @@ namespace GestionNutricion.Infrastructure.Mappings
 
             CreateMap<MainCourseInsertionDto, MainCourse>().ReverseMap();
             CreateMap<MainCourseDto, MainCourse>().ReverseMap();
+
+            CreateMap<UserDto, User>().ReverseMap();
         }
     }
 }
