@@ -10,6 +10,6 @@ namespace CedServicios.Api.Controllers
     [Authorize]
     public class GestionNutricionControllerBase : ControllerBase
     {
-        protected int AuthenticatedUserId => Convert.ToInt32(User.Claims?.FirstOrDefault(x => x.Type.Equals("idUsuario", StringComparison.OrdinalIgnoreCase))?.Value);
+        protected int AuthenticatedUserId => Convert.ToInt32(User.Claims?.FirstOrDefault(x => x.Type.Equals("user_id", StringComparison.OrdinalIgnoreCase))?.Value);
     }
 }
