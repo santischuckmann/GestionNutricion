@@ -3,11 +3,10 @@ using GestionNutricion.Core.Entitys;
 using GestionNutricion.Core.Handlers;
 using GestionNutricion.Core.Interfaces.Handlers;
 using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
-using GestionNutricion.Infrastructure.Interfaces;
 
 namespace GestionNutricion.Infrastructure.Services
 {
-    public class DietaryPlanService : IDietaryPlanService
+    public class DietaryPlanService
     {
         private readonly IMapper _mapper;
         private readonly IDietaryPlanHandler _dietaryPlanHandler;
@@ -31,6 +30,14 @@ namespace GestionNutricion.Infrastructure.Services
             var dietaryPlan = await _dietaryPlanHandler.GetDietaryPlanById(id);
 
             var dietaryPlanDto = _mapper.Map<DietaryPlanDto>(dietaryPlan);
+
+            return dietaryPlanDto;
+        }
+        public async Task<IEnumerable<DietaryPlanDto>> GetDietaryPlans(int userId)
+        {
+            var dietaryPlan = await _dietaryPlanHandler.GetAllDietaryPlans(userId);
+
+            var dietaryPlanDto = _mapper.Map<IEnumerable<DietaryPlanDto>>(dietaryPlan);
 
             return dietaryPlanDto;
         }

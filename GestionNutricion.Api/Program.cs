@@ -3,13 +3,10 @@ using CedServicios.Infraestructura.Filtros;
 using FluentValidation.AspNetCore;
 using GestionNutricion.Infrastructure.Proxies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 
 ConfigurationManager Configuration = builder.Configuration;
@@ -99,7 +96,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors(_policyName);
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();

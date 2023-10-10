@@ -3,12 +3,11 @@ using GestionNutricion.Core.Entitys;
 using GestionNutricion.Core.Interfaces.Handlers;
 using GestionNutricion.Core.Interfaces.Repositories;
 using GestionNutricion.Infrastructure.DTOs.Snack;
-using GestionNutricion.Infrastructure.Interfaces;
 using System.Reflection.Metadata.Ecma335;
 
 namespace GestionNutricion.Infrastructure.Services
 {
-    public class SnackService : ISnackService
+    public class SnackService
     {
         private readonly ISnackHandler _snackHandler;
         private readonly IMapper _mapper;

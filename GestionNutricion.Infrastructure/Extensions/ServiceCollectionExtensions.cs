@@ -2,7 +2,6 @@
 using GestionNutricion.Core.Interfaces.Handlers;
 using GestionNutricion.Core.Interfaces.Repositories;
 using GestionNutricion.Infrastructure.Data;
-using GestionNutricion.Infrastructure.Interfaces;
 using GestionNutricion.Infrastructure.Proxies;
 using GestionNutricion.Infrastructure.Repositories;
 using GestionNutricion.Infrastructure.Services;
@@ -34,9 +33,9 @@ namespace CedServicios.Infraestructura.Extensiones
             services.AddScoped<IUserRepository, UserRepository>();
 
             // services
-            services.AddScoped<ISnackService, SnackService>();
-            services.AddScoped<IDietaryPlanService, DietaryPlanService>();
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<SnackService, SnackService>();
+            services.AddScoped <DietaryPlanService, DietaryPlanService>();
+            services.AddScoped<UserService, UserService>();
 
             // handlers
             services.AddScoped<ISnackHandler, SnackHandler>();

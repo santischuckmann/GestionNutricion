@@ -1,7 +1,7 @@
 ﻿using CedServicios.Api.Controllers;
 using GestionNutricion.Infrastructure.DTOs;
 using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
-using GestionNutricion.Infrastructure.Interfaces;
+using GestionNutricion.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,8 +11,8 @@ namespace GestionNutricion.Api.Controllers
 {
     public class UserController : GestionNutricionControllerBase
     {
-        private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        private readonly UserService _userService;
+        public UserController(UserService userService)
         {
             _userService = userService ?? throw new ArgumentNullException(nameof(userService));
         }

@@ -10,5 +10,6 @@ namespace GestionNutricion.Core.Interfaces.Repositories
 {
     public interface IDietaryPlanRepository : IRepository<DietaryPlan>
     {
+        public Task<IEnumerable<DietaryPlan>> GetAllDietaryPlans(int userId);
     }
 }

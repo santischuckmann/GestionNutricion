@@ -1,21 +1,15 @@
-﻿using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
+﻿using CedServicios.Api.Controllers;
 using GestionNutricion.Infrastructure.DTOs.Snack;
-using GestionNutricion.Infrastructure.Interfaces;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+using GestionNutricion.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using System.Net;
 
 namespace GestionNutricion.Api.Controllers
 {
-    [Authorize]
-    [Route("api/[controller]")]
-    [ApiController]
-    public class SnackController : ControllerBase
+    public class SnackController : GestionNutricionControllerBase
     {
-        private readonly ISnackService _snackService;
-        public SnackController(ISnackService snackService)
+        private readonly SnackService _snackService;
+        public SnackController(SnackService snackService)
         {
             _snackService = snackService ?? throw new ArgumentNullException(nameof(snackService));
         }

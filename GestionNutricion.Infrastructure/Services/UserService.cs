@@ -2,7 +2,6 @@
 using GestionNutricion.Core.Handlers;
 using GestionNutricion.Core.Interfaces.Handlers;
 using GestionNutricion.Infrastructure.DTOs;
-using GestionNutricion.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GestionNutricion.Infrastructure.Services
 {
-    internal class UserService : IUserService
+    public class UserService
     {
         private readonly IUserHandler _userHandler;
         private readonly IMapper _mapper;

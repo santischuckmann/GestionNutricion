@@ -6,6 +6,7 @@
         public string Food { get; set; }
         public string Dessert { get; set; }
         public int IdDietaryPlan { get; set; }
+        public int UserId { get; set; }
         public virtual MainCourseType MainCourseType { get; set; }
         public virtual DietaryPlan DietaryPlan { get; set; }
     }

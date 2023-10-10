@@ -1,6 +1,6 @@
 ﻿using CedServicios.Api.Controllers;
 using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
-using GestionNutricion.Infrastructure.Interfaces;
+using GestionNutricion.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,8 +10,8 @@ namespace GestionNutricion.Api.Controllers
 {
     public class DietaryPlanController : GestionNutricionControllerBase
     {
-        private readonly IDietaryPlanService _dietaryPlanService;
-        public DietaryPlanController(IDietaryPlanService dietaryPlanService)
+        private readonly DietaryPlanService _dietaryPlanService;
+        public DietaryPlanController(DietaryPlanService dietaryPlanService)
         {
             _dietaryPlanService = dietaryPlanService ?? throw new ArgumentNullException(nameof(dietaryPlanService));
         }
@@ -28,6 +28,16 @@ namespace GestionNutricion.Api.Controllers
             DietaryPlanDto result = await _dietaryPlanService.CreateDietaryPlan(dietaryPlanDto);
 
             return Ok(result);
+        }
+
+        [HttpGet]
+        [ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(IEnumerable<DietaryPlanDto>))]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> GetDietaryPlans()
+        {
+            IEnumerable<DietaryPlanDto> plans = await _dietaryPlanService.GetDietaryPlans(AuthenticatedUserId);
+
+            return Ok(plans);
         }
     }
 }

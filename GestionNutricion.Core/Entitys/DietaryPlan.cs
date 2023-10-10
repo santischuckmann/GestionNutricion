@@ -11,6 +11,7 @@
         public string Surname { get; set; }
         public string Observations { get; set; }
         public string Breakfast { get; set; }
+        public int UserId { get; set; }
         public virtual ICollection<PlanSnack> PlanSnacks { get; set; }
         public virtual ICollection<MainCourse> MainCourses { get; set; }
     }
