@@ -5,6 +5,9 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
+        "SERVER_NAME": "localhost",
+        "USER_SQL": "santiago-root",
+        "PASSWORD_SQL": "Santi2002,",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
@@ -15,6 +18,9 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
+        "SERVER_NAME": "127.0.0.1,1433",
+        "USER_SQL": "santiago-root",
+        "PASSWORD_SQL": "Santi2002,",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },

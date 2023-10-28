@@ -14,10 +14,20 @@ namespace CedServicios.Infraestructura.Extensiones
 {
     public static class ServiceCollectionExtension
     {
-        public static IServiceCollection AddDbContexts(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddDbContexts(this IServiceCollection services)
         {
+            string serverName = Environment.GetEnvironmentVariable("SERVER_NAME");
+            string userSql = Environment.GetEnvironmentVariable("USER_SQL");
+            string passwordSql = Environment.GetEnvironmentVariable("PASSWORD_SQL");
+
+            //string connectionString = $"Server={serverName};Database=GestionNutricion;User Id={userSql};Password={passwordSql};Trust Server Certificate=true";
+
+            string connectionString = "Server=127.0.0.1,1433;Database=GestionNutricion;User Id=santiago-root;Password=Santi2002,;Trust Server Certificate =true";
+
+            Console.WriteLine("connectionString: " + connectionString);
+
             services.AddDbContext<GestionNutricionContext>(options =>
-               options.UseSqlServer(configuration.GetConnectionString("GestionNutricion")), ServiceLifetime.Transient
+               options.UseSqlServer(connectionString), ServiceLifetime.Transient
            );
 
             return services;

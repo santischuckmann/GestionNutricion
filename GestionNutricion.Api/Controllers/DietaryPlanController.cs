@@ -39,5 +39,11 @@ namespace GestionNutricion.Api.Controllers
 
             return Ok(plans);
         }
+
+        [HttpGet("pruebita")]
+        public IActionResult GetTexto()
+        {
+            return Ok("buenos dias capo, te anda la api en docker");
+        }
     }
 }

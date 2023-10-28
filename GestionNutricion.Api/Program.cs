@@ -29,7 +29,7 @@ builder.Services.AddCors(x =>
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddDbContexts(Configuration);
+builder.Services.AddDbContexts();
 builder.Services.AddControllers();
 builder.Services.AddServices();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

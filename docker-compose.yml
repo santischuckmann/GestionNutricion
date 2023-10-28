@@ -1,0 +1,21 @@
+services:
+  mssql:
+    hostname: mssql
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Santi2002,"
+      MSSQL_PID: Express
+    ports:
+    - "1433:1433"
+  gestionnutricion:
+    hostname: gestionnutricion-api
+    image: santiago/gestion-nutricion-api:latest
+    environment:
+      SERVER_NAME: "127.0.0.1,1433"
+      USER_SQL: "sa"
+      PASSWORD_SQL: "Santi2002,"
+    ports:
+    - "5001:5000"
+    depends_on:
+      - mssql

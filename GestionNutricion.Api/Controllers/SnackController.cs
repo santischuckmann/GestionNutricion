@@ -1,6 +1,7 @@
 ﻿using CedServicios.Api.Controllers;
 using GestionNutricion.Infrastructure.DTOs.Snack;
 using GestionNutricion.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -34,6 +35,7 @@ namespace GestionNutricion.Api.Controllers
         /// Get all Snacks.
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet("Snacks", Name = nameof(GetAllSnacks))]
         [ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(IEnumerable<PlanSnackDto>))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
