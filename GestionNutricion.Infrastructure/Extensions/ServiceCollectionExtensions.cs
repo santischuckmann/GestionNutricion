@@ -20,9 +20,7 @@ namespace CedServicios.Infraestructura.Extensiones
             string userSql = Environment.GetEnvironmentVariable("USER_SQL");
             string passwordSql = Environment.GetEnvironmentVariable("PASSWORD_SQL");
 
-            //string connectionString = $"Server={serverName};Database=GestionNutricion;User Id={userSql};Password={passwordSql};Trust Server Certificate=true";
-
-            string connectionString = "Server=127.0.0.1,1433;Database=GestionNutricion;User Id=santiago-root;Password=Santi2002,;Trust Server Certificate =true";
+            string connectionString = $"Server={serverName};Database=GestionNutricion;User Id={userSql};Password={passwordSql};Trust Server Certificate=true";
 
             Console.WriteLine("connectionString: " + connectionString);
 
