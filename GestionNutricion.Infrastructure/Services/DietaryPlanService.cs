@@ -14,15 +14,21 @@ namespace GestionNutricion.Infrastructure.Services
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _dietaryPlanHandler = dietaryPlanHandler ?? throw new ArgumentNullException(nameof(dietaryPlanHandler));
         }
-        public async Task<DietaryPlanDto> CreateDietaryPlan(DietaryPlanInsertionDto newDietaryPlanDto)
+        public async Task CreateDietaryPlan(DietaryPlanInsertionDto newDietaryPlanDto, int userId)
         {
             var dietaryPlan = _mapper.Map<DietaryPlan>(newDietaryPlanDto);
+            dietaryPlan.UserId = userId;
+            Patient newPatient = new Patient()
+            {
+                IsActive = 1,
+                FirstAppointmentDate = DateTime.Now,
+                LastAppointmentDate = DateTime.Now,
+                Name = newDietaryPlanDto.Name,
+                Surname = newDietaryPlanDto.Surname
+            };
+            dietaryPlan.Patient = newPatient;
 
             await _dietaryPlanHandler.AddDietaryPlan(dietaryPlan);
-
-            var dietaryPlanDto = _mapper.Map<DietaryPlanDto>(dietaryPlan);
-
-            return dietaryPlanDto;
         }
 
         public async Task<DietaryPlanDto> GetDietaryPlanById(int id)

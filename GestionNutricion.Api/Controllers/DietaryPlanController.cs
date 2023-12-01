@@ -25,9 +25,9 @@ namespace GestionNutricion.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> CreateDietaryPlan(DietaryPlanInsertionDto dietaryPlanDto)
         { 
-            DietaryPlanDto result = await _dietaryPlanService.CreateDietaryPlan(dietaryPlanDto);
+            await _dietaryPlanService.CreateDietaryPlan(dietaryPlanDto, AuthenticatedUserId);
 
-            return Ok(result);
+            return Ok(new EmptyResult());
         }
 
         [HttpGet]

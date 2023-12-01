@@ -21,6 +21,11 @@ namespace GestionNutricion.Infraestructure.Data.Configurations
                 .HasMaxLength(256)
                 .IsUnicode(false);
 
+            builder.HasOne(m => m.Patient)
+                .WithMany(d => d.DietaryPlans)
+                .HasForeignKey(s => s.PatientId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
         }
     }
 }

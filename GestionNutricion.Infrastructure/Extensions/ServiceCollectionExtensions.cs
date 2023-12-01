@@ -42,7 +42,7 @@ namespace CedServicios.Infraestructura.Extensiones
 
             // services
             services.AddScoped<SnackService, SnackService>();
-            services.AddScoped <DietaryPlanService, DietaryPlanService>();
+            services.AddScoped<DietaryPlanService, DietaryPlanService>();
             services.AddScoped<UserService, UserService>();
 
             // handlers

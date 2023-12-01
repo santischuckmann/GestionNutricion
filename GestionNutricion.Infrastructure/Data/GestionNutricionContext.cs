@@ -27,10 +27,12 @@ namespace GestionNutricion.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            modelBuilder.Ignore<User>();
         }
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("Server=localhost;Database=GestionNutricion;Integrated Security=true;Trust Server Certificate=true;");
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=localhost;Database=GestionNutricion;User Id=santiago-root;Password=Santi2002,;Trust Server Certificate=true;");
+        }
     }
 }
