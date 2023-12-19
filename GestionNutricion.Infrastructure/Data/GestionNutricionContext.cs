@@ -28,7 +28,7 @@ namespace GestionNutricion.Infrastructure.Data
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            modelBuilder.Ignore<User>();
+            //modelBuilder.Ignore<User>();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

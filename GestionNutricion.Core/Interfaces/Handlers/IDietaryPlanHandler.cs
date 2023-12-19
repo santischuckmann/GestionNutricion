@@ -12,5 +12,6 @@ namespace GestionNutricion.Core.Interfaces.Handlers
         Task AddDietaryPlan(DietaryPlan dietaryPlan);
         Task<DietaryPlan> GetDietaryPlanById(int id);
         Task<IEnumerable<DietaryPlan>> GetAllDietaryPlans(int userId);
+        Task EditDietaryPlan(DietaryPlan dietaryPlan);
     }
 }

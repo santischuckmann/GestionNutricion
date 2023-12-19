@@ -47,5 +47,17 @@ namespace GestionNutricion.Infrastructure.Services
 
             return dietaryPlanDto;
         }
+
+        public async Task EditDietaryPlan(DietaryPlanDto dietaryPlanDto)
+        {
+            var dietaryPlan = await _dietaryPlanHandler.GetDietaryPlanById(dietaryPlanDto.Id);
+
+            dietaryPlan.PlanSnacks = dietaryPlan.PlanSnacks;
+            dietaryPlan.Breakfast = dietaryPlan.Breakfast;
+            dietaryPlan.MainCourses = dietaryPlan.MainCourses;
+            dietaryPlan.Observations = dietaryPlan.Observations;
+
+            await _dietaryPlanHandler.EditDietaryPlan(dietaryPlan);
+        }
     }
 }
