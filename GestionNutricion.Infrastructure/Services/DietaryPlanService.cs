@@ -1,18 +1,27 @@
 ﻿using AutoMapper;
 using GestionNutricion.Core.Entitys;
-using GestionNutricion.Core.Handlers;
 using GestionNutricion.Core.Interfaces.Handlers;
 using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
+using GestionNutricion.Infrastructure.Query;
+using Microsoft.Data.SqlClient;
+using System.Text;
 
 namespace GestionNutricion.Infrastructure.Services
 {
     public class DietaryPlanService
     {
         private readonly IMapper _mapper;
-        private readonly IDietaryPlanHandler _dietaryPlanHandler;
-        public DietaryPlanService(IMapper mapper, IDietaryPlanHandler dietaryPlanHandler) { 
+        private readonly IDietaryPlanCommandHandler _commandHandler;
+        private readonly DietaryPlanQueryHandler _queryHandler;
+        public DietaryPlanService(
+            IMapper mapper, 
+            IDietaryPlanCommandHandler dietaryPlanCommandHandler,
+            DietaryPlanQueryHandler dietaryPlanQueryHandler) 
+        { 
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-            _dietaryPlanHandler = dietaryPlanHandler ?? throw new ArgumentNullException(nameof(dietaryPlanHandler));
+            _commandHandler = dietaryPlanCommandHandler ?? throw new ArgumentNullException(nameof(dietaryPlanCommandHandler));
+            _queryHandler = dietaryPlanQueryHandler ?? throw new ArgumentNullException(nameof(dietaryPlanQueryHandler));
+
         }
         public async Task CreateDietaryPlan(DietaryPlanInsertionDto newDietaryPlanDto, int userId)
         {
@@ -28,36 +37,34 @@ namespace GestionNutricion.Infrastructure.Services
             };
             dietaryPlan.Patient = newPatient;
 
-            await _dietaryPlanHandler.AddDietaryPlan(dietaryPlan);
+            await _commandHandler.AddDietaryPlan(dietaryPlan);
         }
 
         public async Task<DietaryPlanDto> GetDietaryPlanById(int id)
         {
-            var dietaryPlan = await _dietaryPlanHandler.GetDietaryPlanById(id);
+            var dietaryPlan = await _commandHandler.GetDietaryPlanById(id);
 
             var dietaryPlanDto = _mapper.Map<DietaryPlanDto>(dietaryPlan);
 
             return dietaryPlanDto;
         }
-        public async Task<IEnumerable<DietaryPlanDto>> GetDietaryPlans(int userId)
+        public async Task<List<DietaryPlanDto>> GetDietaryPlans(int userId)
         {
-            var dietaryPlan = await _dietaryPlanHandler.GetAllDietaryPlans(userId);
+            var dietaryPlanDtos = await Task.Run(() => _queryHandler.GetAllDietaryPlans(userId));
 
-            var dietaryPlanDto = _mapper.Map<IEnumerable<DietaryPlanDto>>(dietaryPlan);
-
-            return dietaryPlanDto;
+            return dietaryPlanDtos;
         }
 
         public async Task EditDietaryPlan(DietaryPlanDto dietaryPlanDto)
         {
-            var dietaryPlan = await _dietaryPlanHandler.GetDietaryPlanById(dietaryPlanDto.Id);
+            var dietaryPlan = await _commandHandler.GetDietaryPlanById(dietaryPlanDto.Id);
 
-            dietaryPlan.PlanSnacks = dietaryPlan.PlanSnacks;
-            dietaryPlan.Breakfast = dietaryPlan.Breakfast;
-            dietaryPlan.MainCourses = dietaryPlan.MainCourses;
-            dietaryPlan.Observations = dietaryPlan.Observations;
+            dietaryPlan.PlanSnacks = (ICollection<PlanSnack>)dietaryPlanDto.PlanSnacks;
+            dietaryPlan.Breakfast = dietaryPlanDto.Breakfast;
+            dietaryPlan.MainCourses = (ICollection<MainCourse>)dietaryPlanDto.MainCourses;
+            dietaryPlan.Observations = dietaryPlanDto.Observations;
 
-            await _dietaryPlanHandler.EditDietaryPlan(dietaryPlan);
+            await _commandHandler.EditDietaryPlan(dietaryPlan);
         }
     }
 }

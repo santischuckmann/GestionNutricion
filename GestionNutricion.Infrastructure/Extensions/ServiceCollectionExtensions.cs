@@ -3,11 +3,13 @@ using GestionNutricion.Core.Interfaces.Handlers;
 using GestionNutricion.Core.Interfaces.Repositories;
 using GestionNutricion.Infrastructure.Data;
 using GestionNutricion.Infrastructure.Proxies;
+using GestionNutricion.Infrastructure.Query;
 using GestionNutricion.Infrastructure.Repositories;
 using GestionNutricion.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 
 namespace CedServicios.Infraestructura.Extensiones
@@ -45,10 +47,13 @@ namespace CedServicios.Infraestructura.Extensiones
             services.AddScoped<DietaryPlanService, DietaryPlanService>();
             services.AddScoped<UserService, UserService>();
 
-            // handlers
+            // command handlers
             services.AddScoped<ISnackHandler, SnackHandler>();
-            services.AddScoped<IDietaryPlanHandler, DietaryPlanHandler>();
+            services.AddScoped<IDietaryPlanCommandHandler, DietaryPlanHandler>();
             services.AddScoped<IUserHandler, UserHandler>();
+
+            // query handlers
+            services.AddScoped<DietaryPlanQueryHandler, DietaryPlanQueryHandler>(_ => new DietaryPlanQueryHandler(Global.GetConnectionString(true)));
 
             // clients
             services.AddHttpClient<IFoodProxy, FoodProxy>();
@@ -88,6 +93,22 @@ namespace CedServicios.Infraestructura.Extensiones
             });
 
             return services;
+        }
+    }
+
+    public class Global
+    {
+        public static string GetConnectionString(bool isQueryHandler)
+        {
+            string serverName = Environment.GetEnvironmentVariable("SERVER_NAME");
+            string userSql = Environment.GetEnvironmentVariable("USER_SQL");
+            string passwordSql = Environment.GetEnvironmentVariable("PASSWORD_SQL");
+
+            string connectionString = $"Server={serverName};Database=GestionNutricion;User Id={userSql};Password={passwordSql};";
+
+            if (!isQueryHandler) connectionString += "Trust Server Certificate=true";
+
+            return connectionString;
         }
     }
 }

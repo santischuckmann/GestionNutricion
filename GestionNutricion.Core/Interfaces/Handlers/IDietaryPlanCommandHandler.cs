@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GestionNutricion.Core.Interfaces.Handlers
 {
-    public interface IDietaryPlanHandler
+    public interface IDietaryPlanCommandHandler
     {
         Task AddDietaryPlan(DietaryPlan dietaryPlan);
         Task<DietaryPlan> GetDietaryPlanById(int id);

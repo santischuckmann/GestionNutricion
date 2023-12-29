@@ -35,6 +35,7 @@ namespace GestionNutricion.Api.Controllers
 
             return Ok(dietaryPlanDto);
         }
+
         [HttpPut]
         public async Task<IActionResult> EditDietaryPlan(DietaryPlanDto dietaryPlanDto)
         {

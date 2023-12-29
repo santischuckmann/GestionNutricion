@@ -4,7 +4,7 @@ using GestionNutricion.Core.Interfaces.Repositories;
 
 namespace GestionNutricion.Core.Handlers
 {
-    public class DietaryPlanHandler : IDietaryPlanHandler
+    public class DietaryPlanHandler : IDietaryPlanCommandHandler
     {
         public readonly IUnitOfWork _unitOfWork;
         public DietaryPlanHandler(IUnitOfWork unitOfWork)
