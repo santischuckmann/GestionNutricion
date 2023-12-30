@@ -2,7 +2,8 @@
 {
     public class PlanSnack: CommonEntity
     {
-        public int IdDietaryPlan { get; set; }
+        public int PlanSnackId { get; set; }
+        public int DietaryPlanId { get; set; }
         public string Food { get; set; }
         public int IdSnackTime { get; set; }
         public int UserId { get; set; }

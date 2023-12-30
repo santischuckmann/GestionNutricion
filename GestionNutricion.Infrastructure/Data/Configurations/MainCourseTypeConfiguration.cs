@@ -11,6 +11,7 @@ namespace GestionNutricion.Infraestructure.Data.Configurations
         {
             MasterTableConfiguration.ApplyConfiguration("MainCourseType", builder);
 
+            builder.HasKey(s => s.MainCourseTypeId);
         }
     }
 }

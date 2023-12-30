@@ -1,7 +1,6 @@
 using CedServicios.Infraestructura.Extensiones;
 using CedServicios.Infraestructura.Filtros;
 using FluentValidation.AspNetCore;
-using GestionNutricion.Infrastructure.Proxies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -70,10 +69,6 @@ builder.Services.AddAuthentication(options =>
         }
     };
 });
-
-builder.Services.Configure<ApiUrls>(
-    options => Configuration.GetSection("ApiUrls").Bind(options)
-);
 
 builder.Services.AddMvc(options =>
 {

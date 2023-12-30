@@ -4,6 +4,7 @@ using GestionNutricion.Core.Interfaces.Handlers;
 using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
 using GestionNutricion.Infrastructure.Query;
 using Microsoft.Data.SqlClient;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace GestionNutricion.Infrastructure.Services
@@ -57,12 +58,13 @@ namespace GestionNutricion.Infrastructure.Services
 
         public async Task EditDietaryPlan(DietaryPlanDto dietaryPlanDto)
         {
-            var dietaryPlan = await _commandHandler.GetDietaryPlanById(dietaryPlanDto.Id);
+            var dietaryPlan = await _commandHandler.GetDietaryPlanById(dietaryPlanDto.DietaryPlanId);
 
-            dietaryPlan.PlanSnacks = (ICollection<PlanSnack>)dietaryPlanDto.PlanSnacks;
-            dietaryPlan.Breakfast = dietaryPlanDto.Breakfast;
-            dietaryPlan.MainCourses = (ICollection<MainCourse>)dietaryPlanDto.MainCourses;
-            dietaryPlan.Observations = dietaryPlanDto.Observations;
+            var editedDietaryPlanDto = _mapper.Map<DietaryPlan>(dietaryPlanDto);
+            dietaryPlan.PlanSnacks = editedDietaryPlanDto.PlanSnacks;
+            dietaryPlan.Breakfast = editedDietaryPlanDto.Breakfast;
+            dietaryPlan.MainCourses = editedDietaryPlanDto.MainCourses;
+            dietaryPlan.Observations = editedDietaryPlanDto.Observations;
 
             await _commandHandler.EditDietaryPlan(dietaryPlan);
         }

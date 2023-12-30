@@ -12,6 +12,7 @@ namespace GestionNutricion.Core.Entitys
         {
             MainCourses = new HashSet<MainCourse>();
         }
+        public int MainCourseTypeId { get; set; }
         public ICollection<MainCourse> MainCourses { get; set; }
     }
 }

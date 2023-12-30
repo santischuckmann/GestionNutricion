@@ -12,6 +12,8 @@ namespace GestionNutricion.Infraestructure.Data.Configurations
         {
             MasterTableConfiguration.ApplyConfiguration("SnackTime", builder);
 
+            builder.HasKey(s => s.SnackTimeId);
+
         }
     }
 }

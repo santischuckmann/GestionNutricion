@@ -15,8 +15,6 @@ namespace GestionNutricion.Infrastructure.Data.Configurations
         {
             builder.ToTable(tableName);
 
-            builder.HasKey(s => s.Id);
-
             builder.Property(s => s.Description)
                 .IsRequired()
                 .HasMaxLength(30)

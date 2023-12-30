@@ -10,7 +10,7 @@ namespace GestionNutricion.Infrastructure.Data.Configurations
         {
             builder.ToTable("MainCourse");
 
-            builder.HasKey(m => m.Id);
+            builder.HasKey(m => m.MainCourseId);
 
             builder.Property(m => m.Food)
                 .IsRequired()
@@ -24,7 +24,7 @@ namespace GestionNutricion.Infrastructure.Data.Configurations
 
             builder.HasOne(m => m.DietaryPlan)
                 .WithMany(d => d.MainCourses)
-                .HasForeignKey(s => s.IdDietaryPlan)
+                .HasForeignKey(s => s.DietaryPlanId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             builder.HasOne(m => m.MainCourseType)

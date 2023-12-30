@@ -7,6 +7,7 @@
             PlanSnacks = new HashSet<PlanSnack>();
             MainCourses = new HashSet<MainCourse>();
         }
+        public int DietaryPlanId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Observations { get; set; }

@@ -10,7 +10,7 @@ namespace GestionNutricion.Infrastructure.Data.Configurations
         {
             builder.ToTable("PlanSnack");
 
-            builder.HasKey(p => p.Id);
+            builder.HasKey(p => p.PlanSnackId);
 
             builder.Property(p => p.Food)
                 .IsRequired()
@@ -19,7 +19,7 @@ namespace GestionNutricion.Infrastructure.Data.Configurations
 
             builder.HasOne(p => p.DietaryPlan)
                 .WithMany(d => d.PlanSnacks)
-                .HasForeignKey(s => s.IdDietaryPlan)
+                .HasForeignKey(s => s.DietaryPlanId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             builder.HasOne(s => s.SnackTime)

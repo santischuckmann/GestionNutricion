@@ -2,32 +2,21 @@
 using GestionNutricion.Core.Interfaces.Handlers;
 using GestionNutricion.Core.Interfaces.Repositories;
 using GestionNutricion.Infrastructure.Data;
-using GestionNutricion.Infrastructure.Proxies;
 using GestionNutricion.Infrastructure.Query;
 using GestionNutricion.Infrastructure.Repositories;
 using GestionNutricion.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
-
+ 
 namespace CedServicios.Infraestructura.Extensiones
 {
     public static class ServiceCollectionExtension
     {
         public static IServiceCollection AddDbContexts(this IServiceCollection services)
         {
-            string serverName = Environment.GetEnvironmentVariable("SERVER_NAME");
-            string userSql = Environment.GetEnvironmentVariable("USER_SQL");
-            string passwordSql = Environment.GetEnvironmentVariable("PASSWORD_SQL");
-
-            string connectionString = $"Server={serverName};Database=GestionNutricion;User Id={userSql};Password={passwordSql};Trust Server Certificate=true";
-
-            Console.WriteLine("connectionString: " + connectionString);
-
             services.AddDbContext<GestionNutricionContext>(options =>
-               options.UseSqlServer(connectionString), ServiceLifetime.Transient
+               options.UseSqlServer(Global.GetConnectionString()), ServiceLifetime.Transient
            );
 
             return services;
@@ -53,10 +42,7 @@ namespace CedServicios.Infraestructura.Extensiones
             services.AddScoped<IUserHandler, UserHandler>();
 
             // query handlers
-            services.AddScoped<DietaryPlanQueryHandler, DietaryPlanQueryHandler>(_ => new DietaryPlanQueryHandler(Global.GetConnectionString(true)));
-
-            // clients
-            services.AddHttpClient<IFoodProxy, FoodProxy>();
+            services.AddScoped<DietaryPlanQueryHandler, DietaryPlanQueryHandler>(_ => new DietaryPlanQueryHandler(Global.GetConnectionString(isQueryHandler: true)));
 
             return services;
         }
@@ -98,7 +84,7 @@ namespace CedServicios.Infraestructura.Extensiones
 
     public class Global
     {
-        public static string GetConnectionString(bool isQueryHandler)
+        public static string GetConnectionString(bool isQueryHandler = false)
         {
             string serverName = Environment.GetEnvironmentVariable("SERVER_NAME");
             string userSql = Environment.GetEnvironmentVariable("USER_SQL");

@@ -11,7 +11,7 @@ namespace GestionNutricion.Infraestructure.Data.Configurations
         {
             builder.ToTable("Snack");
 
-            builder.HasKey(s => s.Id);
+            builder.HasKey(s => s.SnackId);
 
             builder.Property(s => s.Food)
                 .IsRequired()
