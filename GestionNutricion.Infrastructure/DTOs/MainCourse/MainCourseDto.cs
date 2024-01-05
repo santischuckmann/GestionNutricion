@@ -9,6 +9,6 @@ namespace GestionNutricion.Infrastructure.DTOs.MainCourse
     public class MainCourseDto : MainCourseBaseDto
     {
         public int Id { get; set; }
-        public int IdDietaryPlan { get; set; }
+        public int DietaryPlanId { get; set; }
     }
 }

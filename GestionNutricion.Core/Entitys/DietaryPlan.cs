@@ -8,8 +8,6 @@
             MainCourses = new HashSet<MainCourse>();
         }
         public int DietaryPlanId { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
         public string Observations { get; set; }
         public string Breakfast { get; set; }
         public int UserId { get; set; }

@@ -18,7 +18,7 @@ namespace GestionNutricion.Core.Handlers
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<DietaryPlan> GetDietaryPlanById(int id) => await _unitOfWork.DietaryPlanRepository.GetById(id);
+        public async Task<DietaryPlan> GetDietaryPlanById(int id) => await _unitOfWork.DietaryPlanRepository.GetDietaryPlanById(id);
         public async Task<IEnumerable<DietaryPlan>> GetAllDietaryPlans(int userId) => await _unitOfWork.DietaryPlanRepository.GetAllDietaryPlans(userId);
 
         public async Task EditDietaryPlan(DietaryPlan dietaryPlan)

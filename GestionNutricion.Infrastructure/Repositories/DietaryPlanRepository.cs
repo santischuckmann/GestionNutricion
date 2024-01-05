@@ -21,6 +21,16 @@ namespace GestionNutricion.Infrastructure.Repositories
                  .Include(d => d.MainCourses)
                  .ToListAsync();
         }
+
+        public async Task<DietaryPlan> GetDietaryPlanById(int id)
+        {
+            return await _gestionNutricionContext.DietaryPlans
+                .Where(d => d.DietaryPlanId == id)
+                 .Include(d => d.PlanSnacks)
+                 .Include(d => d.MainCourses)
+                 .Include(d => d.Patient)
+                 .FirstAsync();
+        }
     }
 }
 

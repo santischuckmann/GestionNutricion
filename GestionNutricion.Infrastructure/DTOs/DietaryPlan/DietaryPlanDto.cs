@@ -1,6 +1,7 @@
 ﻿using GestionNutricion.Core.Entitys;
 using GestionNutricion.Infrastructure.DTOs.MainCourse;
 using GestionNutricion.Infrastructure.DTOs.Snack;
+using System.Text;
 
 namespace GestionNutricion.Infrastructure.DTOs.DietaryPlan
 {
