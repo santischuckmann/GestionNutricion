@@ -6,6 +6,7 @@ using GestionNutricion.Infrastructure.DTOs.MainCourse;
 using GestionNutricion.Infrastructure.Query;
 using Microsoft.Data.SqlClient;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace GestionNutricion.Infrastructure.Services
