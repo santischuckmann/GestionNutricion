@@ -30,6 +30,7 @@ namespace CedServicios.Infraestructura.Extensiones
             services.AddScoped<ISnackRepository, SnackRepository>();
             services.AddScoped<IDietaryPlanRepository,  DietaryPlanRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
 
             // services
             services.AddScoped<SnackService, SnackService>();
@@ -41,6 +42,7 @@ namespace CedServicios.Infraestructura.Extensiones
             services.AddScoped<ISnackHandler, SnackHandler>();
             services.AddScoped<IDietaryPlanCommandHandler, DietaryPlanHandler>();
             services.AddScoped<IUserHandler, UserHandler>();
+            services.AddScoped<IPatientCommandHandler, PatientHandler>();
 
             // query handlers
             services.AddScoped<DietaryPlanQueryHandler, DietaryPlanQueryHandler>(_ => new DietaryPlanQueryHandler(Global.GetConnectionString(isQueryHandler: true)));

@@ -1,4 +1,4 @@
-﻿namespace GestionNutricion.Infrastructure.DTOs.Snack
+﻿namespace GestionNutricion.Infrastructure.DTOs.PlanSnack
 {
     public class PlanSnackDto: PlanSnackBaseDto
     {

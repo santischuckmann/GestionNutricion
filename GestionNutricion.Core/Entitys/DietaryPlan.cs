@@ -10,7 +10,6 @@
         public int DietaryPlanId { get; set; }
         public string Observations { get; set; }
         public string Breakfast { get; set; }
-        public int UserId { get; set; }
         public int PatientId { get; set; }
         public virtual ICollection<PlanSnack> PlanSnacks { get; set; }
         public virtual ICollection<MainCourse> MainCourses { get; set; }

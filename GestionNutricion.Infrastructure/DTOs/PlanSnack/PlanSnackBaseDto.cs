@@ -1,6 +1,6 @@
 ﻿using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
 
-namespace GestionNutricion.Infrastructure.DTOs.Snack
+namespace GestionNutricion.Infrastructure.DTOs.PlanSnack
 {
     public abstract class PlanSnackBaseDto
     {

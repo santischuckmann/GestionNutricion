@@ -13,6 +13,7 @@ namespace GestionNutricion.Core.Entitys
             DietaryPlans = new HashSet<DietaryPlan>();
         }
         public int PatientId { get; set; }
+        public int UserId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public DateTime FirstAppointmentDate { get; set; }

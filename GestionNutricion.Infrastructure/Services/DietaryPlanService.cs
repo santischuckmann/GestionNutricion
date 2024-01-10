@@ -2,13 +2,7 @@
 using GestionNutricion.Core.Entitys;
 using GestionNutricion.Core.Interfaces.Handlers;
 using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
-using GestionNutricion.Infrastructure.DTOs.MainCourse;
 using GestionNutricion.Infrastructure.Query;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore.Metadata;
-using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace GestionNutricion.Infrastructure.Services
 {
@@ -16,35 +10,38 @@ namespace GestionNutricion.Infrastructure.Services
     {
         private readonly IMapper _mapper;
         private readonly IDietaryPlanCommandHandler _commandHandler;
+        private readonly IPatientCommandHandler _patientCommandHandler;
         private readonly DietaryPlanQueryHandler _queryHandler;
         public DietaryPlanService(
             IMapper mapper, 
             IDietaryPlanCommandHandler dietaryPlanCommandHandler,
+            IPatientCommandHandler patientCommandHandler,
             DietaryPlanQueryHandler dietaryPlanQueryHandler) 
         { 
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _commandHandler = dietaryPlanCommandHandler ?? throw new ArgumentNullException(nameof(dietaryPlanCommandHandler));
+            _patientCommandHandler = patientCommandHandler ?? throw new ArgumentNullException(nameof(patientCommandHandler));
             _queryHandler = dietaryPlanQueryHandler ?? throw new ArgumentNullException(nameof(dietaryPlanQueryHandler));
 
         }
         public async Task CreateDietaryPlan(DietaryPlanInsertionDto newDietaryPlanDto, int userId)
         {
-            Patient patient;
-            if (newDietaryPlanDto.PatientId != null)
-            {
-
-            }
-
             var dietaryPlan = _mapper.Map<DietaryPlan>(newDietaryPlanDto);
-            dietaryPlan.UserId = userId;
-            Patient newPatient = new Patient()
-            {
-                IsActive = 1,
-                FirstAppointmentDate = DateTime.Now,
-                LastAppointmentDate = DateTime.Now,
-                Name = newDietaryPlanDto.Name,
-                Surname = newDietaryPlanDto.Surname
-            };
+
+            Patient newPatient;
+            if (newDietaryPlanDto.PatientId != null)
+                newPatient = await _patientCommandHandler.GetPatientById((int)newDietaryPlanDto.PatientId);
+            else
+                newPatient = new Patient()
+                {
+                    IsActive = 1,
+                    FirstAppointmentDate = DateTime.Now,
+                    LastAppointmentDate = DateTime.Now,
+                    Name = newDietaryPlanDto.Name,
+                    Surname = newDietaryPlanDto.Surname,
+                    UserId = userId
+                };
+
             dietaryPlan.Patient = newPatient;
 
             await _commandHandler.AddDietaryPlan(dietaryPlan);
@@ -63,7 +60,7 @@ namespace GestionNutricion.Infrastructure.Services
             return dietaryPlanDtos;
         }
 
-        public async Task EditDietaryPlan(DietaryPlanDto dietaryPlanDto)
+        public async Task EditDietaryPlan(DietaryPlanEditionDto dietaryPlanDto)
         {
             var dietaryPlan = await _commandHandler.GetDietaryPlanById(dietaryPlanDto.DietaryPlanId);
 

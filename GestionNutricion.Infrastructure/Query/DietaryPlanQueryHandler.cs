@@ -1,10 +1,7 @@
-﻿using CedServicios.Infraestructura.Extensiones;
-using GestionNutricion.Core.Entitys;
-using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
+﻿using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
 using GestionNutricion.Infrastructure.DTOs.MainCourse;
-using GestionNutricion.Infrastructure.DTOs.Snack;
+using GestionNutricion.Infrastructure.DTOs.PlanSnack;
 using GestionNutricion.Infrastructure.Extensions;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
@@ -31,7 +28,7 @@ namespace GestionNutricion.Infrastructure.Query
 
         public List<DietaryPlanDto> GetAllDietaryPlans(int userId)
         {
-            string queryString = $"{GetSelectForDietaryPlanDto()} where UserId = @UserId";
+            string queryString = $"{GetSelectForDietaryPlanDto()} where UserId = @UserId order by dp.DietaryPlanId desc";
 
             SqlCommand sqlCmd = new SqlCommand(queryString.ToString());
             sqlCmd.Parameters.AddWithValue("@UserId", userId);
@@ -71,21 +68,20 @@ namespace GestionNutricion.Infrastructure.Query
             queryString.AppendLine("join PlanSnack ps on ps.DietaryPlanId = dp.DietaryPlanId ");
             queryString.AppendLine("join Patient on Patient.PatientId = dp.PatientId ");
 
-
             return queryString.ToString();
         }
 
 
         private static DietaryPlanDto MapDietaryPlan(DataTable table, int dietaryPlanId)
         {
+            DataRow[] rowsPerDietaryPlan = table.Select($"DietaryPlanId = '{dietaryPlanId}'");
+
             DietaryPlanDto dietaryPlanDto = new();
             dietaryPlanDto.DietaryPlanId = Convert.ToInt32(dietaryPlanId);
-            dietaryPlanDto.Breakfast = table.Rows[0]["Breakfast"].ToString();
-            dietaryPlanDto.Name = table.Rows[0]["Name"].ToString();
-            dietaryPlanDto.Surname = table.Rows[0]["Surname"].ToString();
-            dietaryPlanDto.Observations = table.Rows[0]["Observations"].ToString();
-
-            DataRow[] rowsPerDietaryPlan = table.Select($"DietaryPlanId = '{dietaryPlanId}'");
+            dietaryPlanDto.Breakfast = rowsPerDietaryPlan[0]["Breakfast"].ToString();
+            dietaryPlanDto.Name = rowsPerDietaryPlan[0]["Name"].ToString();
+            dietaryPlanDto.Surname = rowsPerDietaryPlan[0]["Surname"].ToString();
+            dietaryPlanDto.Observations = rowsPerDietaryPlan[0]["Observations"].ToString();
 
             var distinctMainCourseRows = rowsPerDietaryPlan.GetDistinctValues("MainCourseId");
 

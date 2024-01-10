@@ -3,7 +3,7 @@ using GestionNutricion.Core.Entitys;
 using GestionNutricion.Infrastructure.DTOs;
 using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
 using GestionNutricion.Infrastructure.DTOs.MainCourse;
-using GestionNutricion.Infrastructure.DTOs.Snack;
+using GestionNutricion.Infrastructure.DTOs.PlanSnack;
 
 namespace GestionNutricion.Infrastructure.Mappings
 {

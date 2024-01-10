@@ -1,5 +1,5 @@
 ﻿using GestionNutricion.Infrastructure.DTOs.MainCourse;
-using GestionNutricion.Infrastructure.DTOs.Snack;
+using GestionNutricion.Infrastructure.DTOs.PlanSnack;
 using System;
 using System.Collections.Generic;
 using System.Linq;

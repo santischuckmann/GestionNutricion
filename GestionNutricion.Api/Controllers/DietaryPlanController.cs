@@ -37,7 +37,7 @@ namespace GestionNutricion.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> EditDietaryPlan(DietaryPlanDto dietaryPlanDto)
+        public async Task<IActionResult> EditDietaryPlan(DietaryPlanEditionDto dietaryPlanDto)
         {
             await _dietaryPlanService.EditDietaryPlan(dietaryPlanDto);
 

@@ -11,6 +11,7 @@ namespace GestionNutricion.Core.Interfaces.Repositories
         ISnackRepository SnackRepository { get; }
         IDietaryPlanRepository DietaryPlanRepository { get; }
         IUserRepository UserRepository { get; }
+        IPatientRepository PatientRepository { get; }
         void Save();
         Task SaveAsync();
     }

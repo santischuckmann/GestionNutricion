@@ -16,7 +16,7 @@ namespace GestionNutricion.Infrastructure.Repositories
         public async Task<IEnumerable<DietaryPlan>> GetAllDietaryPlans(int userId)
         {
             return await _gestionNutricionContext.DietaryPlans
-                 .Where(d => d.UserId == userId)
+                 .Where(d => d.Patient.UserId == userId)
                  .Include(d => d.PlanSnacks)
                  .Include(d => d.MainCourses)
                  .ToListAsync();

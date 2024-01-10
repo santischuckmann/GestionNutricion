@@ -1,5 +1,5 @@
 ﻿using CedServicios.Api.Controllers;
-using GestionNutricion.Infrastructure.DTOs.Snack;
+using GestionNutricion.Infrastructure.DTOs.PlanSnack;
 using GestionNutricion.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
