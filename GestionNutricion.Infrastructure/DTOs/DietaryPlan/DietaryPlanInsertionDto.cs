@@ -10,6 +10,7 @@ namespace GestionNutricion.Infrastructure.DTOs.DietaryPlan
 {
     public class DietaryPlanInsertionDto : DietaryPlanBaseDto
     {
+        public int? PatientId { get; set; }
         public List<MainCourseInsertionDto> MainCourses { get; set; }
         public List<PlanSnackInsertionDto> PlanSnacks { get; set; }
     }

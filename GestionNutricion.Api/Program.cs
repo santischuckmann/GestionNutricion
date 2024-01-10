@@ -75,10 +75,10 @@ builder.Services.AddMvc(options =>
     options.Filters.Add<ValidationMiddleware>();
 });
     
-builder.Services.AddFluentValidation(options =>
-{
-    options.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
-});
+//builder.Services.AddFluentValidation(options =>
+//{
+//    options.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+//});
 
 var app = builder.Build();
 

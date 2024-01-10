@@ -37,6 +37,11 @@ namespace GestionNutricion.Infrastructure.Query
             sqlCmd.Parameters.AddWithValue("@UserId", userId);
             DataTable table = (DataTable)Execute(sqlCmd, TipoRetorno.TB, Transaccion.NoAcepta);
 
+            return GetDietaryPlanDtos(table);
+        }
+
+        public static List<DietaryPlanDto> GetDietaryPlanDtos(DataTable table)
+        {
             List<DietaryPlanDto> dietaryPlanDtos = new();
 
             List<DataRow>? distinctRowsPerDietaryPlan = table.Select().GetDistinctValues("DietaryPlanId");
@@ -53,7 +58,8 @@ namespace GestionNutricion.Infrastructure.Query
 
             return dietaryPlanDtos;
         }
-        public static string GetSelectForDietaryPlanDto()
+
+        private static string GetSelectForDietaryPlanDto()
         {
             StringBuilder queryString = new StringBuilder();
             queryString.AppendLine("select dp.DietaryPlanId, dp.Breakfast, dp.Observations, ");

@@ -5,6 +5,7 @@ using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
 using GestionNutricion.Infrastructure.DTOs.MainCourse;
 using GestionNutricion.Infrastructure.Query;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -28,6 +29,12 @@ namespace GestionNutricion.Infrastructure.Services
         }
         public async Task CreateDietaryPlan(DietaryPlanInsertionDto newDietaryPlanDto, int userId)
         {
+            Patient patient;
+            if (newDietaryPlanDto.PatientId != null)
+            {
+
+            }
+
             var dietaryPlan = _mapper.Map<DietaryPlan>(newDietaryPlanDto);
             dietaryPlan.UserId = userId;
             Patient newPatient = new Patient()
