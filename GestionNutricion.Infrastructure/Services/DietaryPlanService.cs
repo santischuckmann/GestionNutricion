@@ -1,26 +1,26 @@
 ﻿using AutoMapper;
 using GestionNutricion.Core.Entitys;
 using GestionNutricion.Core.Interfaces.Handlers;
+using GestionNutricion.Core.Interfaces.Repositories;
 using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
-using GestionNutricion.Infrastructure.Query;
+using GestionNutricion.Infrastructure.Query.Handlers;
+using GestionNutricion.Infrastructure.Repositories;
+using System.Runtime.ExceptionServices;
 
 namespace GestionNutricion.Infrastructure.Services
 {
     public class DietaryPlanService
     {
         private readonly IMapper _mapper;
-        private readonly IDietaryPlanCommandHandler _commandHandler;
-        private readonly IPatientCommandHandler _patientCommandHandler;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly DietaryPlanQueryHandler _queryHandler;
         public DietaryPlanService(
             IMapper mapper, 
-            IDietaryPlanCommandHandler dietaryPlanCommandHandler,
-            IPatientCommandHandler patientCommandHandler,
+            IUnitOfWork unitOfWork,
             DietaryPlanQueryHandler dietaryPlanQueryHandler) 
         { 
+            _unitOfWork = unitOfWork;
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-            _commandHandler = dietaryPlanCommandHandler ?? throw new ArgumentNullException(nameof(dietaryPlanCommandHandler));
-            _patientCommandHandler = patientCommandHandler ?? throw new ArgumentNullException(nameof(patientCommandHandler));
             _queryHandler = dietaryPlanQueryHandler ?? throw new ArgumentNullException(nameof(dietaryPlanQueryHandler));
 
         }
@@ -28,11 +28,13 @@ namespace GestionNutricion.Infrastructure.Services
         {
             var dietaryPlan = _mapper.Map<DietaryPlan>(newDietaryPlanDto);
 
-            Patient newPatient;
+            dietaryPlan.PlanSnacks = dietaryPlan.PlanSnacks.Where(ps => ps.Food != String.Empty).ToList();
+
+            Patient patient;
             if (newDietaryPlanDto.PatientId != null)
-                newPatient = await _patientCommandHandler.GetPatientById((int)newDietaryPlanDto.PatientId);
+                patient = await _unitOfWork.PatientRepository.GetById((int)newDietaryPlanDto.PatientId);
             else
-                newPatient = new Patient()
+                patient = new Patient()
                 {
                     IsActive = 1,
                     FirstAppointmentDate = DateTime.Now,
@@ -42,9 +44,23 @@ namespace GestionNutricion.Infrastructure.Services
                     UserId = userId
                 };
 
-            dietaryPlan.Patient = newPatient;
+            dietaryPlan.Patient = patient;
 
-            await _commandHandler.AddDietaryPlan(dietaryPlan);
+            await _unitOfWork.DietaryPlanRepository.Add(dietaryPlan);
+
+            List<Snack> snacksToInsert = new();
+            foreach (var planSnack in dietaryPlan.PlanSnacks)
+            {
+                var snackExists = _unitOfWork.SnackRepository.DoesSnackExistByName(planSnack.Food);
+                if (!snackExists)
+                {
+                    var snack = new Snack { Food = planSnack.Food, IdSnackTime = planSnack.IdSnackTime };
+                    snacksToInsert.Add(snack);
+                }
+            }
+            await _unitOfWork.SnackRepository.AddList(snacksToInsert);
+
+            await _unitOfWork.SaveAsync();
         }
 
         public async Task<DietaryPlanDto> GetDietaryPlanById(int id)
@@ -62,7 +78,7 @@ namespace GestionNutricion.Infrastructure.Services
 
         public async Task EditDietaryPlan(DietaryPlanEditionDto dietaryPlanDto)
         {
-            var dietaryPlan = await _commandHandler.GetDietaryPlanById(dietaryPlanDto.DietaryPlanId);
+            var dietaryPlan = await _unitOfWork.DietaryPlanRepository.GetDietaryPlanById(dietaryPlanDto.DietaryPlanId);
 
             foreach (var mainCourseDto in dietaryPlanDto.MainCourses)
             {
@@ -103,7 +119,8 @@ namespace GestionNutricion.Infrastructure.Services
             dietaryPlan.Breakfast = dietaryPlanDto.Breakfast;
             dietaryPlan.Observations = dietaryPlanDto.Observations;
 
-            await _commandHandler.EditDietaryPlan(dietaryPlan);
+            _unitOfWork.DietaryPlanRepository.Update(dietaryPlan);
+            await _unitOfWork.SaveAsync();
         }
     }
 }

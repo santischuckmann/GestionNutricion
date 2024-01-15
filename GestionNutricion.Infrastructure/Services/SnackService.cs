@@ -3,18 +3,22 @@ using GestionNutricion.Core.Entitys;
 using GestionNutricion.Core.Interfaces.Handlers;
 using GestionNutricion.Core.Interfaces.Repositories;
 using GestionNutricion.Infrastructure.DTOs.PlanSnack;
+using GestionNutricion.Infrastructure.Query.Handlers;
 
 namespace GestionNutricion.Infrastructure.Services
 {
     public class SnackService
     {
         private readonly ISnackHandler _snackHandler;
+        private readonly SnackQueryHandler _queryHandler;
         private readonly IMapper _mapper;
         public SnackService(
             ISnackHandler snackHandler,
+            SnackQueryHandler queryHandler,
             IMapper mapper)
         {
             _snackHandler = snackHandler ?? throw new ArgumentNullException(nameof(snackHandler));
+            _queryHandler = queryHandler ?? throw new ArgumentNullException(nameof(queryHandler));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
@@ -29,11 +33,9 @@ namespace GestionNutricion.Infrastructure.Services
             return snackDto;
         }
 
-        public async Task<IEnumerable<PlanSnackDto>> GetAllSnacks()
+        public async Task<IEnumerable<string>> GetSnacks(int snackTimeId)
         {
-            var rawSnacks = await _snackHandler.GetAllSnacks();
-
-            var snacks = _mapper.Map<IEnumerable<PlanSnackDto>>(rawSnacks);
+            var snacks = await Task.Run(() => _queryHandler.GetSnacks(snackTimeId));
 
             return snacks;
         }

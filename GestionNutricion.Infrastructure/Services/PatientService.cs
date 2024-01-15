@@ -4,7 +4,7 @@ using GestionNutricion.Core.Interfaces.Handlers;
 using GestionNutricion.Infrastructure.DTOs.DietaryPlan;
 using GestionNutricion.Infrastructure.DTOs.MainCourse;
 using GestionNutricion.Infrastructure.DTOs.Patient;
-using GestionNutricion.Infrastructure.Query;
+using GestionNutricion.Infrastructure.Query.Handlers;
 using Microsoft.Data.SqlClient;
 using System.Collections.ObjectModel;
 using System.Text;

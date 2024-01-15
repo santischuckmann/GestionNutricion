@@ -4,9 +4,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace GestionNutricion.Infrastructure.Query
+namespace GestionNutricion.Infrastructure.Query.Handlers
 {
-    public class PatientQueryHandler: QueryHandler
+    public class PatientQueryHandler : QueryHandler
     {
         public PatientQueryHandler(string connectionString) : base(connectionString)
         {

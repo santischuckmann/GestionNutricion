@@ -2,13 +2,13 @@
 using GestionNutricion.Core.Interfaces.Handlers;
 using GestionNutricion.Core.Interfaces.Repositories;
 using GestionNutricion.Infrastructure.Data;
-using GestionNutricion.Infrastructure.Query;
+using GestionNutricion.Infrastructure.Query.Handlers;
 using GestionNutricion.Infrastructure.Repositories;
 using GestionNutricion.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
- 
+
 namespace CedServicios.Infraestructura.Extensiones
 {
     public static class ServiceCollectionExtension
@@ -47,6 +47,8 @@ namespace CedServicios.Infraestructura.Extensiones
             // query handlers
             services.AddScoped<DietaryPlanQueryHandler, DietaryPlanQueryHandler>(_ => new DietaryPlanQueryHandler(Global.GetConnectionString(isQueryHandler: true)));
             services.AddScoped<PatientQueryHandler, PatientQueryHandler>(_ => new PatientQueryHandler(Global.GetConnectionString(isQueryHandler: true)));
+            services.AddScoped<SnackQueryHandler, SnackQueryHandler>(_ => new SnackQueryHandler(Global.GetConnectionString(isQueryHandler: true)));
+
 
             return services;
         }

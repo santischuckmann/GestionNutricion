@@ -10,5 +10,6 @@ namespace GestionNutricion.Core.Interfaces.Repositories
 {
     public interface ISnackRepository: IRepository<Snack>
     {
+        bool DoesSnackExistByName(string name);
     }
 }

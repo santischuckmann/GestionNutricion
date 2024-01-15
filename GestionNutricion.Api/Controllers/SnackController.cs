@@ -32,16 +32,16 @@ namespace GestionNutricion.Api.Controllers
 
 
         /// <summary>
-        /// Get all Snacks.
+        /// Get Snacks with filters.
         /// </summary>
         /// <returns></returns>
         [AllowAnonymous]
-        [HttpGet("Snacks", Name = nameof(GetAllSnacks))]
-        [ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(IEnumerable<PlanSnackDto>))]
+        [HttpGet]
+        [ProducesResponseType((int)HttpStatusCode.Created, Type = typeof(IEnumerable<string>))]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> GetAllSnacks()
+        public async Task<IActionResult> GetSnacks(int snackTimeId)
         {
-            IEnumerable<PlanSnackDto> snacks = await _snackService.GetAllSnacks();
+            IEnumerable<string> snacks = await _snackService.GetSnacks(snackTimeId);
 
             return Ok(snacks);
         }

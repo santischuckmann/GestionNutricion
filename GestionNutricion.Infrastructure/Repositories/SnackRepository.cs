@@ -12,6 +12,7 @@ namespace GestionNutricion.Infrastructure.Repositories
             _gestionNutricionContext = context ?? throw new System.ArgumentNullException(nameof(context));
         }
 
+        public bool DoesSnackExistByName(string name) => _gestionNutricionContext.Snacks.Where(s => s.Food.Equals(name)).Any();
     }
 }
 
